@@ -4,19 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>devclub-demo</groupId>
-    <artifactId>devclub-demo</artifactId>
+    <groupId>qa-class</groupId>
+    <artifactId>qa-class</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-        <selenide.version>4.14.2</selenide.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <selenide.version>5.6.1</selenide.version>
         <jupiter.parallel>false</jupiter.parallel>
         <jupiter.parallel.threads>3</jupiter.parallel.threads>
 
-        <allure-junit5.version>2.8.1</allure-junit5.version>
-        <allure-maven.version>2.9</allure-maven.version>
-        <allure-generator.version>2.8.1</allure-generator.version>
+        <allure-junit5.version>2.10.0</allure-junit5.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
+        <allure-generator.version>2.10.0</allure-generator.version>
         <aspectj.version>1.8.10</aspectj.version>
 
         <java.version>1.8</java.version>
@@ -29,7 +29,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.3.2</version>
+                <version>5.5.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -54,23 +54,8 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
