@@ -18,37 +18,29 @@ import static com.codeborne.selenide.Selenide.open;
 
 class SelenideSimpleTest {
 
-//    static Stream<Arguments> demoTest() {
-//        return Stream.of(
-//                Arguments.of(Period.DAY, Language.EN),
-//                Arguments.of(Period.DAY, Language.RU),
-//                Arguments.of(Period.WEEKS, Language.EN),
-//                Arguments.of(Period.MONTH, Language.RU)
-//        );
-//    }
-//
-//    @MethodSource()
+    static Stream<Arguments> demoTest() {
+        return Stream.of(
+                Arguments.of(Period.DAY, Language.EN),
+                Arguments.of(Period.DAY, Language.RU),
+                Arguments.of(Period.WEEKS, Language.EN),
+                Arguments.of(Period.MONTH, Language.RU)
+        );
+    }
 
-
-
-
-    @CsvSource(
-         value = {
-                 "propeller , false",
-                 "yandex , 10",
-                 "google , 10",
-         }
-    )
+    @EnumSource(value = Period.class, names = {"DAY"})
     @ParameterizedTest
-    void demoTest(String searchQuery, int expectedCount) {
+    void demoTest(Period period) {
         open("http://ya.ru", YandexMainPage.class)
-                .setSearchQuery(searchQuery)
+                .setSearchQuery("searchQuery")
                 .search()
-                .checkResultsCount(expectedCount)
+                .checkResultsCount(10)
                 .openAdvancedSettings()
-                .choosePeriod(Period.WEEKS)
+                .choosePeriod(period)
                 .chooseLanguage(Language.EN)
                 .submitAdvancedSettings()
-                .checkResultsCount(expectedCount);
+                .checkResultsCount(10);
     }
+
+
+
 }
