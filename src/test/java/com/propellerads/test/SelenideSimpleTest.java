@@ -3,52 +3,37 @@ package com.propellerads.test;
 import com.propellerads.page.YandexMainPage;
 import com.propellerads.util.Language;
 import com.propellerads.util.Period;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ArgumentsSource;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.open;
 
 class SelenideSimpleTest {
+    
 
-//    static Stream<Arguments> demoTest() {
-//        return Stream.of(
-//                Arguments.of(Period.DAY, Language.EN),
-//                Arguments.of(Period.DAY, Language.RU),
-//                Arguments.of(Period.WEEKS, Language.EN),
-//                Arguments.of(Period.MONTH, Language.RU)
-//        );
-//    }
-//
-//    @MethodSource()
+    static Stream<Arguments> demoTest() {
+        return Stream.of(
+                Arguments.of(Period.DAY, Language.EN),
+                Arguments.of(Period.DAY, Language.RU),
+                Arguments.of(Period.WEEKS, Language.EN),
+                Arguments.of(Period.MONTH, Language.RU)
+        );
+    }
 
-
-
-
-    @CsvSource(
-         value = {
-                 "propeller , false",
-                 "yandex , 10",
-                 "google , 10",
-         }
-    )
+    @EnumSource(value = Period.class, names = {"DAY"})
     @ParameterizedTest
-    void demoTest(String searchQuery, int expectedCount) {
+    void demoTest(Period period) {
         open("http://ya.ru", YandexMainPage.class)
-                .setSearchQuery(searchQuery)
-                .search()
-                .checkResultsCount(expectedCount)
+                .getSearchComponent()
+                .search("searchQuery")
+                .checkResultsCount(10)
                 .openAdvancedSettings()
-                .choosePeriod(Period.WEEKS)
+                .choosePeriod(period)
                 .chooseLanguage(Language.EN)
                 .submitAdvancedSettings()
-                .checkResultsCount(expectedCount);
+                .checkResultsCount(10);
     }
 }
