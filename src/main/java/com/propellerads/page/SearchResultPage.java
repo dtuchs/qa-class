@@ -4,13 +4,16 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.propellerads.component.SearchComponent;
 import com.propellerads.util.Language;
 import com.propellerads.util.Period;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class SearchResultPage extends YandexMainPage {
+public class SearchResultPage {
+
+    private SearchComponent searchComponent = new SearchComponent();
 
     private ElementsCollection
             results = $$("li.serp-item"),
